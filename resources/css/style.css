@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Plus&display=swap');
+@media screen and (max-width: 800px) {
+    .mailBox {
+      width: 100%;
+      top: 12vh;
+      max-height: fit-content;
+      overflow-y: scroll;
+      scrollbar-width: thin;
+      scrollbar-color: #5b22e9 rgb(231, 231, 231);
+      border-right: solid 1px #afafaf;
+    }
+    .App-mail{
+        width: 100%;
+        height: 88vh;
+        max-height: fit-content;
+        position: sticky;
+        overflow-y: scroll;
+        scrollbar-width: thin;
+        scrollbar-color: #5b22e9 rgb(231, 231, 231);
+        top:12vh;
+        background: rgb(248, 248, 248);
+        justify-content: center;
+    }
+  }
+  @media screen and (max-width: 1100px) and (min-width: 800px) {
+    .mailBox {
+        width: 50%;
+        height: 88vh;
+        top: 12vh;
+        max-height: fit-content;
+        overflow-y: scroll;
+        scrollbar-width: thin;
+        scrollbar-color: #5b22e9 rgb(231, 231, 231);
+        border-right: solid 1px #afafaf;
+      }
+      .App-mail{
+          width: 50%;
+          height: 88vh;
+          max-height: fit-content;
+          position: sticky;
+          overflow-y: scroll;
+          scrollbar-width: thin;
+          scrollbar-color: #5b22e9 rgb(231, 231, 231);
+          top:12vh;
+          background: rgb(248, 248, 248);
+          justify-content: center;
+      }
+  }
+  @media screen and (min-width: 1100px) {
+    .mailBox {
+        width: 35%;
+        height: 88vh;
+        top: 12vh;
+        max-height: fit-content;
+        overflow-y: scroll;
+        scrollbar-width: thin;
+        scrollbar-color: #5b22e9 rgb(231, 231, 231);
+        border-right: solid 1px #afafaf;
+      }
+      .App-mail{
+          width: 65%;
+          height: 88vh;
+          max-height: fit-content;
+          position: sticky;
+          overflow-y: scroll;
+          scrollbar-width: thin;
+          scrollbar-color: #5b22e9 rgb(231, 231, 231);
+          top:12vh;
+          background: rgb(248, 248, 248);
+          justify-content: center;
+      }
+  }
+.App{
+    background: rgb(248, 248, 248);
+    font-family: 'Gentium Book Plus', serif;
+}
+.App-header{
+    background: #FFFFFF;
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    width: 100%;
+    height: 11vh;
+    box-shadow: 4px 4px 4px rgb(207, 207, 207);
+    align-items: center;
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: row;
+}
+.mailBox .open{
+    background: rgb(248, 248, 248);
+    color: #8b8b8b;
+  }
+.mailBox .focus{
+    background: #fdffe8;
+    color: rgb(128, 38, 38);
+}
+.right{
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+    text-align: center;
+}
+.App-logo{
+    margin-left: 1.5rem;
+}
+.logo{
+    width: 9rem;
+    height: auto;
+}
+.App-counter{
+    border-radius: 10px;
+    line-height: 0%;
+    padding: 0px 1rem;  
+    align-items: center;
+    text-align: center;  
+}
+.counter{
+    width: 1.4rem;
+    height: auto;
+}
+.count{
+    margin-left: 0.4rem;
+    color: #FFFFFF;
+    display: inline-block;
+    font-size: 1.2rem;
+}
+.App-realtors{
+    margin-left: 1.4rem;
+    display: inline-block;
+    margin-right: 1.5rem;
+}
+.realtors{
+    background: #FFFFFF;
+    border-radius: 5px;
+}
+.body{
+    display: flex;
+    flex-direction: row;
+}
+.App-contact{
+    border-bottom: solid 1px #afafaf;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: row;
+}
+.open .filterColor{
+    filter: invert(74%) sepia(0%) saturate(0%) hue-rotate(21deg) brightness(97%) contrast(88%);
+}
+.imageMailOpen .filterColor{
+    filter: invert(74%) sepia(0%) saturate(0%) hue-rotate(21deg) brightness(97%) contrast(88%);
+}
+.imageMailType{
+    margin: 0.7rem;
+    margin-top: 1.2rem;
+}
+.App-mailInfo{
+    margin-left: 0.5rem;
+    margin-top: 0.85rem;
+    width: 100%;
+}
+.top-mailInfo{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+.mailName{
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+}
+.open .mailName{
+    font-weight: normal;
+}
+.contactPhone{
+    font-weight: normal;
+}
+.mailTime{
+    display: flex;
+    margin-left: auto;
+    margin-right: 1.4rem;
+    color: #5b22e9;
+}
+.mailSubject{
+    margin-bottom: 0.3rem;
+}
+.open .mailTime{
+    color: #8b8b8b;
+}
+.mailBody{
+    margin-bottom: 0.8rem;
+    color: #8b8b8b;
+}
+.noMail{
+    margin: 1.8rem;
+    text-align: center;
+    margin-top: 10rem;
+    font-size: 16px;
+    color: #585858;
+}
+.App-info{    
+    width: 100%;
+}
+.closeMessage{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 2rem;
+    justify-content: flex-end;
+}
+.closeIcon{
+    margin-top: 1.0rem;
+    margin-right: 1.5rem;
+    color: #5b22e9;
+    font-size: 25px;
+}
+.closeMessage :hover{
+    color: #3b08bc;
+    background: #FFFFFF;
+    font-size: 30px;
+}
+.TopInfo{
+    margin: 1.5rem;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: row;
+}
+.imageMailOpen{
+    margin-left: 1.3rem;
+    margin-top: 1.5rem;
+}
+.mailInfoName{
+    font-size: 18px;
+}
+.senderInfo{
+    margin: 1.3rem;
+    width: 100%;
+}
+.label{
+    width: 30%;
+    margin-top: 0.3rem;
+}
+.contact{
+    width: 70%;
+    margin-top: 0.3rem;
+    margin-left: auto;
+    color: #5b22e9;
+}
+.emailInfo{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+}
+.phoneInfo{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+}
+.mail{
+    margin: 1.5rem;
+    margin-top: 1.8rem;
+    background: #FFFFFF;
+}
+.bottomName{
+    font-size: 20px;
+    margin-left: 1.8rem;
+    padding-top: 1.5rem;
+}
+.dateInfo{
+    margin-left: 1.8rem;
+    color: #8b8b8b;
+    margin-top: 0.3rem;
+    font-size: 20px;
+}
+.content{
+    margin-left: 1.8rem;
+    margin-right: 0.5rem;
+    font-size: 18px;
+    padding-top: 2.2rem;
+    padding-bottom: 2.2rem;
+}
+
