@@ -7,7 +7,7 @@ Elle permet de lire les messages laissés pour les différentes agences.
 
 ### Installation
 
-Si Docker est déjà installé sur votre machine, allez directement à la prochaine l'étape.
+Si Docker est déjà installé sur votre machine, allez directement à la prochaine l'étape, autrement:
 
 Pour installer Docker Desktop, aller sur le lien suivant [Docker](https://www.docker.com/get-started).  
 
