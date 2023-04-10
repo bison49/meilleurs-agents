@@ -14,3 +14,15 @@ Pour installer Docker Desktop, aller sur le lien suivant [Docker](https://www.do
 Le [Swagger](https://swagger.io/solutions/api-documentation/) et l'API sont disponibles à l'adresse suivante http://localhost:8080 en utilisant la commande suivante:
 
     docker run -p 8080:8080 --rm --name MA-FTT-API meilleursagents/frontend-technical-test-api
+    
+## Lancement de l'application
+
+### Installation
+
+Cloner le repository et taper la commande 'yarn install'.
+
+### Démarrer l'application
+
+Après le succès de l'installation des packages, taper la commande 'yarn dev'.  
+
+# Voilà le projet est lancé.
