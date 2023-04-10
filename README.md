@@ -7,7 +7,9 @@ Elle permet de lire les messages laissés pour les différentes agences.
 
 ### Installation
 
-Pour installer Docker Desktop, aller sur le lien suivant [Docker](https://www.docker.com/get-started).
+Si Docker est déjà installé sur votre machine, allez directement à la prochaine l'étape.
+
+Pour installer Docker Desktop, aller sur le lien suivant [Docker](https://www.docker.com/get-started).  
 
 ### Démarrer l'API
 
