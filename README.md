@@ -25,4 +25,4 @@ Cloner le repository et taper la commande 'yarn install'.
 
 Après le succès de l'installation des packages, taper la commande 'yarn dev'.  
 
-# Voilà le projet est lancé.
+### Voilà le projet est lancé, bonne visite.
