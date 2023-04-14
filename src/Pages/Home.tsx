@@ -1,19 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import '../../resources/css/style.css';
+import './home.css';
 
 import { SetStateAction, useCallback, useEffect, useRef, useState } from 'react';
 import { FaRegWindowClose } from 'react-icons/fa';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import date from '../../resources/helper/Date';
-import getImage from '../../resources/helper/ImageChoice';
-import time from '../../resources/helper/Time';
 import logo from '../../resources/image/icon-aviv.svg';
 import counter from '../../resources/image/icon-counter.svg';
 import email from '../../resources/image/icon-mail.svg';
 import emailOpen from '../../resources/image/icon-mail-open.svg';
 import phone from '../../resources/image/icon-phone.svg';
 import { getByRealtor, getData, getList, getMail } from '../utils/AxiosRequest';
+import date from '../utils/helper/Date';
+import getImage from '../utils/helper/ImageChoice';
+import time from '../utils/helper/Time';
 
 function Home(props: any) {
   //Déclaration des variables
