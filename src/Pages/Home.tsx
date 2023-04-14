@@ -1,13 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import '../../resources/css/style.css';
 
-import axios from 'axios';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { SetStateAction, useCallback, useEffect, useRef, useState } from 'react';
 import { FaRegWindowClose } from 'react-icons/fa';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import date from '../../resources/helper/Date';
-import getData from '../../resources/helper/GetData';
 import getImage from '../../resources/helper/ImageChoice';
 import time from '../../resources/helper/Time';
 import logo from '../../resources/image/icon-aviv.svg';
@@ -15,6 +13,7 @@ import counter from '../../resources/image/icon-counter.svg';
 import email from '../../resources/image/icon-mail.svg';
 import emailOpen from '../../resources/image/icon-mail-open.svg';
 import phone from '../../resources/image/icon-phone.svg';
+import { getByRealtor, getData, getList, getMail } from '../utils/AxiosRequest';
 
 function Home(props: any) {
   //Déclaration des variables
@@ -50,6 +49,7 @@ function Home(props: any) {
   }, [isMobile]);
 
   //Hook permettent de scroller au top de la liste de message lorsque l'on change d'agence
+  //et de réinitialiser la page actuelle à 1.
   useEffect(() => {
     setCurrentPage(1);
     document.getElementById('mailBox')?.scrollTo({ top: 0 });
@@ -82,25 +82,35 @@ function Home(props: any) {
     }
   }, [count]);
 
+  function fetchData(
+    url: string,
+    setData: {
+      (value: SetStateAction<any[]>): void;
+      (value: any): void;
+      (arg0: any): void;
+    },
+  ) {
+    getData(url, setData);
+  }
+
   //Hook permettant d'obtenir les différentes agences
   useEffect(() => {
     // création d'un controlleur
     const controller = new AbortController();
-    getData(`http://localhost:8080/realtors/`, setRealtors);
+    fetchData(`http://localhost:8080/realtors/`, setRealtors);
     //abandon de la requête quand le composant se démonte
     return () => controller?.abort();
   }, []);
 
-  //Hook permettant de mettre à jour le compteur
+  //fonction permettant la mise à jour du compteur
+  function fetchByRealtor() {
+    getByRealtor(realtorId, setCount);
+  }
+
+  //Hook permettant l'appel de la fonction
   useEffect(() => {
     const controller = new AbortController();
-    axios
-      .get(`http://localhost:8080/realtors/${realtorId}`)
-      .then((res) => res.data)
-      .then((data) => {
-        setCount(data.unread_messages);
-      })
-      .catch((e) => alert(e.message));
+    fetchByRealtor();
     return () => controller?.abort();
   }, [realtorId, messageId]);
 
@@ -113,39 +123,23 @@ function Home(props: any) {
   async function displayMail(realtor: any, idMessage: any, isOpen: boolean) {
     setMessageId(idMessage);
     if (!isOpen) {
-      await axios
-        .patch(`http://localhost:8080/realtors/${realtor}/messages/${idMessage}`, {
-          read: true,
-        })
-        .catch((e) => alert(e.message));
+      getMail(realtor, idMessage);
     }
     if (isMobile) setIsMailBoxOpen(false);
     setIsMessageOpen(true);
     navigate(`/realtors/${realtor}/messages/${idMessage}`);
   }
 
+  //fonction permettant de charger la liste de message selon la page et l'agence
+  function fetchList() {
+    getList(realtorId, currentPage, setMessages, setHasMore, setLoading);
+  }
+
   //Hook chargeant la liste de message selon la page et l'agence
   useEffect(() => {
     setLoading(true);
     const controller = new AbortController();
-    axios
-      .get(
-        `http://localhost:8080/realtors/${realtorId}/messages/?page=${currentPage}&page_size=20&sort=date:desc`,
-      )
-      .then((res) => res.data)
-      .then((data) => {
-        if (currentPage === 1) {
-          setMessages(data);
-        } else {
-          setMessages((prev) => {
-            //Permet de garder les données précédentes et d'y ajouter les nouvelles
-            return [...new Set([...prev, ...data])];
-          });
-        }
-        setHasMore(data.length > 0);
-        setLoading(false);
-      })
-      .catch((e) => alert(e.message));
+    fetchList();
     controller?.abort();
   }, [currentPage, realtorId]);
 
@@ -197,7 +191,7 @@ function Home(props: any) {
   useEffect(() => {
     const controller = new AbortController();
     if (messageId !== undefined && messageId !== '0') {
-      getData(
+      fetchData(
         `http://localhost:8080/realtors/${realtorId}/messages/${messageId}`,
         setMessage,
       );
