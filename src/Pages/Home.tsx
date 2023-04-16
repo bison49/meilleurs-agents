@@ -82,7 +82,7 @@ function Home(props: any) {
     }
   }, [count]);
 
-  function fetchData(
+  async function fetchData(
     url: string,
     setData: {
       (value: SetStateAction<any[]>): void;
@@ -90,7 +90,7 @@ function Home(props: any) {
       (arg0: any): void;
     },
   ) {
-    getData(url, setData);
+    await getData(url, setData);
   }
 
   //Hook permettant d'obtenir les différentes agences
@@ -103,16 +103,14 @@ function Home(props: any) {
   }, []);
 
   //fonction permettant la mise à jour du compteur
-  function fetchByRealtor() {
-    getByRealtor(realtorId, setCount);
+  async function fetchByRealtor() {
+    await getByRealtor(realtorId, setCount);
   }
 
   //Hook permettant l'appel de la fonction
   useEffect(() => {
     const controller = new AbortController();
     fetchByRealtor();
-    console.log(messageId);
-    console.log(count);
     return () => controller?.abort();
   }, [realtorId, messageId]);
 
@@ -133,8 +131,8 @@ function Home(props: any) {
   }
 
   //fonction permettant de charger la liste de message selon la page et l'agence
-  function fetchList() {
-    getList(realtorId, currentPage, setMessages, setHasMore, setLoading);
+  async function fetchList() {
+    await getList(realtorId, currentPage, setMessages, setHasMore, setLoading);
   }
 
   //Hook chargeant la liste de message selon la page et l'agence
