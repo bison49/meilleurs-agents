@@ -18,7 +18,7 @@ export async function getData(
 export async function getByRealtor(
   realtorId: string | number | undefined,
   setCount: {
-    (value: SetStateAction<undefined>): void;
+    (value: SetStateAction<number>): void;
     (arg0: any): void;
   },
 ) {

@@ -22,7 +22,7 @@ function Home(props: any) {
   const [oldId, setOldId] = useState('0');
   const navigate = useNavigate();
   const [message, setMessage] = useState<any>([]);
-  const [count, setCount] = useState();
+  const [count, setCount] = useState<number>(0);
   const counterBackground = count === 0 ? '#afafaf' : '#5b22e9';
   const [realtors, setRealtors] = useState<any[]>([]);
   const [isMailBoxOpen, setIsMailBoxOpen] = useState(true);
@@ -111,6 +111,8 @@ function Home(props: any) {
   useEffect(() => {
     const controller = new AbortController();
     fetchByRealtor();
+    console.log(messageId);
+    console.log(count);
     return () => controller?.abort();
   }, [realtorId, messageId]);
 
@@ -121,10 +123,10 @@ function Home(props: any) {
 
   //fonction gérant le clique sur un élément da la liste de message
   async function displayMail(realtor: any, idMessage: any, isOpen: boolean) {
-    setMessageId(idMessage);
     if (!isOpen) {
-      getMail(realtor, idMessage);
+      await getMail(realtor, idMessage);
     }
+    setMessageId(idMessage);
     if (isMobile) setIsMailBoxOpen(false);
     setIsMessageOpen(true);
     navigate(`/realtors/${realtor}/messages/${idMessage}`);
@@ -245,7 +247,7 @@ function Home(props: any) {
                     if (idMessage !== undefined) setOldId(idMessage);
                     displayMail(realtorId, element.id, element.read);
                   }}
-                  onKeyPress={() => {
+                  onKeyDown={() => {
                     onKeyPress(realtorId, element.id, element.read);
                   }}
                   role="button"
